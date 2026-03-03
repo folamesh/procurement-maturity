@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Procurement Maturity Framework | Tim Meshileya</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
+    .level-btn { transition: transform 0.3s; cursor: pointer; background: none; border: none; padding: 8px; }
+    .level-btn:hover { transform: scale(1.05); }
+  </style>
+</head>
+<body>
+  <div id="app" class="min-h-screen bg-slate-50">
+    <div class="bg-slate-800 text-white py-6 px-6">
+      <h1 class="text-2xl font-bold">PROCUREMENT MATURITY FRAMEWORK</h1>
+      <p class="text-teal-400 italic mt-1">From Gatekeeper to Transformational</p>
+      <p class="text-slate-300 text-sm mt-2">Tim Meshileya | Executive Value Proposition</p>
+    </div>
+    <div class="bg-white py-8 px-6 border-b">
+      <p class="text-center text-slate-600 mb-6">Click a level to explore the transformation journey</p>
+      <div id="levelButtons" class="flex items-center justify-center gap-2 max-w-4xl mx-auto flex-wrap"></div>
+    </div>
+    <div id="levelDetail" style="display:none;" class="max-w-6xl mx-auto py-6 px-6">
+      <div id="levelHeader" class="rounded-lg p-6 text-white mb-6">
+        <div class="flex items-center gap-4">
+          <div id="levelNumCircle" class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center text-2xl font-bold"></div>
+          <div>
+            <h2 id="levelTitle" class="text-2xl font-bold"></h2>
+            <p id="levelSubtitle" class="text-white text-opacity-90 italic"></p>
+          </div>
+        </div>
+      </div>
+      <div id="dimensionsGrid" class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6"></div>
+      <div id="dimensionDetail" style="display:none;" class="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div id="dimHeader" class="p-4 text-white"><h3 id="dimTitle" class="font-bold text-lg"></h3></div>
+        <div class="grid md:grid-cols-2 gap-0">
+          <div class="p-5 border-r border-b">
+            <h4 class="font-bold text-red-700 mb-3 flex items-center gap-2"><span class="w-3 h-3 bg-red-500 rounded-full"></span>What It Feels Like Today</h4>
+            <ul id="todayList" class="space-y-2"></ul>
+          </div>
+          <div class="p-5 border-b">
+            <h4 class="font-bold text-green-700 mb-3 flex items-center gap-2"><span class="w-3 h-3 bg-green-500 rounded-full"></span>What Good Looks Like</h4>
+            <ul id="goodList" class="space-y-2"></ul>
+          </div>
+          <div class="p-5 border-r bg-slate-50">
+            <h4 class="font-bold text-blue-700 mb-2 flex items-center gap-2"><span class="w-3 h-3 bg-blue-500 rounded-full"></span>First Year Action</h4>
+            <div class="mb-3"><span id="actionName" class="font-semibold text-slate-800"></span><span id="actionTiming" class="ml-2 text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded"></span></div>
+            <ul id="actionList" class="space-y-2"></ul>
+          </div>
+          <div class="p-5 bg-slate-50">
+            <h4 class="font-bold text-purple-700 mb-3 flex items-center gap-2"><span class="w-3 h-3 bg-purple-500 rounded-full"></span>Outcomes</h4>
+            <ul id="outcomeList" class="space-y-2"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-slate-800 text-white py-8 px-6 mt-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h3 class="text-xl font-bold mb-2">Tim Meshileya</h3>
+        <p class="text-teal-400 mb-4">Procurement & Supply Chain Transformation Leader</p>
+        <p class="text-slate-400 text-sm mb-6">Experienced across FMCG - Oil & Gas - Manufacturing - Infrastructure</p>
+        <div class="grid md:grid-cols-1 gap-3 text-sm text-left max-w-3xl mx-auto">
+          <div class="bg-slate-700 p-3 rounded flex gap-3"><span class="text-teal-400 font-bold">✓</span><div><span class="text-teal-400 font-semibold">Diagnostic to Roadmap</span><span class="text-slate-300"> — I assess where you are and build your first-year action plan</span></div></div>
+          <div class="bg-slate-700 p-3 rounded flex gap-3"><span class="text-teal-400 font-bold">✓</span><div><span class="text-teal-400 font-semibold">Corporate Outcome Focus</span><span class="text-slate-300"> — Margin improvement, return on capital, working capital, ESG - not just savings</span></div></div>
+          <div class="bg-slate-700 p-3 rounded flex gap-3"><span class="text-teal-400 font-bold">✓</span><div><span class="text-teal-400 font-semibold">Stakeholder & Change Leadership</span><span class="text-slate-300"> — Build procurement credibility with internal and external stakeholders, navigate resistance, and drive required change</span></div></div>
+          <div class="bg-slate-700 p-3 rounded flex gap-3"><span class="text-teal-400 font-bold">✓</span><div><span class="text-teal-400 font-semibold">Supplier Transformation</span><span class="text-slate-300"> — Turn transactional relationships into strategic partnerships that drive innovation and competitive advantage</span></div></div>
+          <div class="bg-slate-700 p-3 rounded flex gap-3"><span class="text-teal-400 font-bold">✓</span><div><span class="text-teal-400 font-semibold">Technology Pragmatist</span><span class="text-slate-300"> — Right-sized solutions from spend visibility to predictive analytics - matched to your maturity</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+var levels = [
+  {num: 1, title: "COST GATEKEEPER", subtitle: "Protecting the bottom line through spend control", color: "#DC2626", dimensions: [
+    {name: "Strategic Positioning", today: ["Procurement called in late - specs locked before involvement", "Engineering and Manufacturing lead major spend areas with huge outsourcing procurement costs", "Reactive firefighting, no time for strategic work", "CPO reports to Finance Director or Ops - not at exec table"], good: ["Engaged at requirements stage - 4-6 weeks before market", "Defined intake process with SLAs", "CPO has dotted line to CFO", "Included in annual budget planning"], action: "Stakeholder Repositioning", timing: "Month 2-5", actionPoints: ["Map key stakeholders and buying patterns", "Establish early engagement protocols", "Define touchpoints in project lifecycle", "Create intake process with SLAs"], outcomes: ["Procurement at specification stage", "Intake process operational", "Stakeholder map documented"]},
+    {name: "Data, Technology & Visibility", today: ["Spend visibility fragmented - no single source of truth", "Cannot answer 'What did we spend with Supplier X?'", "Manual processes, spreadsheets, email approvals", "Contracts in filing cabinets - no central repository"], good: ["Spend cube with 80%+ classification accuracy", "P2P system - approval under 48 hours", "Central contract repository with expiry alerts", "Delegation of Authority enforced in system"], action: "Spend Diagnostic", timing: "Month 1-3", actionPoints: ["Aggregate data from AP, ERP, P-cards", "Cleanse and classify to category level", "Identify top suppliers and leakage points", "Establish contract repository"], outcomes: ["Spend baseline established", "Leakage areas identified", "Contract repository created"]},
+    {name: "Value Definition & Recognition", today: ["Cheapest compliant bid mindset", "Savings claimed but not validated by Finance", "Cost avoidance excluded from budgets", "No agreed savings methodology"], good: ["Savings methodology agreed with Finance", "Hard savings flow to budget reductions", "Baseline pricing for key categories", "Finance co-signs savings"], action: "Quick Win Delivery", timing: "Month 3-6", actionPoints: ["Target 2-3 high-impact categories", "Agree methodology with Finance upfront", "Document baseline pricing", "Ensure savings flow to budget"], outcomes: ["First savings validated by Finance", "CFO credibility established", "Repeatable methodology in place"]},
+    {name: "Governance & Compliance", today: ["Maverick spending rampant - policies not enforced", "Tail spend unmanaged - 80% suppliers < 5% spend", "No visibility on who buys what from whom", "Delegation of Authority inconsistent"], good: ["Policy with teeth - no PO, no pay", "Quarterly compliance reporting", "DoA matrix enforced at purchase", "Audit trail documented"], action: "Policy & Governance Reset", timing: "Month 2-6", actionPoints: ["Document policy with clear thresholds", "Establish Delegation of Authority matrix", "Implement PO compliance", "Set up quarterly reporting"], outcomes: ["Policies documented and communicated", "Approval matrix live", "Maverick spend reducing"]},
+    {name: "Supplier Engagement", today: ["Transactional - multiple quotes, lowest price wins", "No supplier segmentation", "No visibility on supplier financial health", "Suppliers call only when there's a problem"], good: ["Approved Supplier List for critical categories", "Onboarding with qualification criteria", "Basic performance tracking - delivery, quality", "QBRs with top 20 suppliers"], action: "Supplier Baseline", timing: "Month 3-9", actionPoints: ["Create Approved Supplier List", "Implement onboarding process", "Identify single-source risks", "Establish QBRs with top suppliers"], outcomes: ["Preferred supplier list published", "Performance scorecards active", "Single-source risks documented"]},
+    {name: "Stakeholder & Performance", today: ["Team seen as bottleneck", "Finance doesn't trust savings numbers", "No SLAs with internal customers", "Staff are administrators, not strategic buyers"], good: ["Team seen as guardians of value", "SMEs defined for key categories", "Published SLAs for cycle times"], action: "SLA Foundation", timing: "Month 3-8", actionPoints: ["Establish baseline SLAs with stakeholders", "Define response times and escalation", "Publish cycle time targets", "Set up monthly reporting"], outcomes: ["Clear expectations set", "No longer seen as bottleneck", "Monthly dashboard operational"]}
+  ]},
+  {num: 2, title: "COST MANAGER", subtitle: "Aligning procurement to corporate financial objectives", color: "#EA580C", dimensions: [
+    {name: "Strategic Positioning", today: ["Seat at table but not 1st tier exec level", "In budget planning but not strategy", "Targets set top-down without market reality", "Not in make vs buy or capital projects"], good: ["Savings targets linked to budget reductions - validated by Finance before release", "In annual planning and demand forecasting", "CPO presents to exec committee quarterly", "Consulted on capital projects at business case"], action: "Finance Alignment", timing: "Month 1-4", actionPoints: ["Establish joint methodology with Finance", "Align savings targets to budget outcomes", "Get CPO on exec committee agenda", "Secure seat at capital project reviews"], outcomes: ["Savings validated, released from budget and flow to P&L", "CFO credibility established", "Targets linked to corporate financials"]},
+    {name: "Data, Technology & Visibility", today: ["Technology underutilized - expensive shelfware", "Data scattered with inconsistent naming", "Worse for multisite operations", "Data consolidated but not unified - legacy systems from M&A not integrated"], good: ["Technology enables - adoption rates high", "Consolidated spend visibility with consistent taxonomy - 80%+ coverage", "Moving to real-time visibility", "Reports automated - team does analysis"], action: "Data & Taxonomy Standardization", timing: "Month 2-8", actionPoints: ["Cleanse data, unify naming across sites", "Establish single taxonomy globally", "Drive adoption through training", "Automate standard reports"], outcomes: ["Consolidated spend visibility operational", "Consistent reporting across regions", "Adoption rates tracked and improving"]},
+    {name: "Value Definition & Recognition", today: ["Metrics focus on savings, not total value", "Working capital seen as Finance's job", "Payment terms not actively managed", "Inventory costs not in sourcing decisions"], good: ["Savings methodology embedded - impacts budget and flows to P&L", "Working capital actively managed", "TCO used for major categories", "Cash flow contribution recognized"], action: "Working Capital Integration", timing: "Month 4-10", actionPoints: ["Review payment terms with Finance", "Factor inventory costs into sourcing", "Track procurement contribution to cash", "Implement TCO for major categories"], outcomes: ["Measurable working capital improvement", "Payment terms optimized", "TCO model in use"]},
+    {name: "Governance & Compliance", today: ["Category management in name only", "Backup supplier on paper, not tested", "Policies inconsistent across regions", "Risk register exists but not managed"], good: ["Category strategies based on market intel", "Risk identification proactive with register", "Mitigation plans tested for critical suppliers", "Global policies, regional flexibility"], action: "Category Strategy Build", timing: "Month 2-10", actionPoints: ["Develop strategies based on market intel", "Build risk register with mitigation plans", "Test backup supplier arrangements", "Align global policies regionally"], outcomes: ["Category roadmaps linked to business", "Risk register active and reviewed", "Backup suppliers tested"]},
+    {name: "Supplier Engagement", today: ["Consolidation done but arm's length", "Performance reviews sporadic - tick box", "No supplier development mindset", "Good suppliers treated same as poor"], good: ["Segmentation drives differentiated approach", "Regular review cadence with improvement plans", "Top suppliers managed differently", "Joint cost reduction delivering results"], action: "Supplier Segmentation", timing: "Month 3-10", actionPoints: ["Segment and define management approaches", "Implement regular review cadence", "Manage underperformers with plans", "Launch joint cost reduction"], outcomes: ["Segmentation model operational", "Reviews systematic not ad-hoc", "Joint savings delivered"]},
+    {name: "Stakeholder & Performance", today: ["Collaboration project-based, not systematic", "CPO measured purely on cost", "Customers don't know what we can do", "No formal feedback mechanism"], good: ["Demand management reduces spend waste", "Credibility with Finance and Ops", "Feedback collected and acted on", "Procurement in S&OP discussions"], action: "SLA Optimization & S&OP Entry", timing: "Month 3-10", actionPoints: ["Implement regular business reviews", "Refine SLAs based on feedback", "Establish joint KPI tracking", "Get seat in S&OP discussions"], outcomes: ["Continuous improvement embedded", "Stakeholder feedback operational", "Contributing to demand planning"]}
+  ]},
+  {num: 3, title: "STRATEGIC VALUE CREATOR", subtitle: "Competitive positioning through market leverage and category excellence", color: "#CA8A04", dimensions: [
+    {name: "Strategic Positioning", today: ["Invited to strategy but struggles to influence", "Risk averse - no governance for innovation", "Category strategies not linked to BU priorities", "Make vs buy without procurement input"], good: ["Category strategies link to BU plans", "Insights shape make vs buy decisions", "Governance enables innovation", "CPO trusted advisor to BU leaders"], action: "Category-to-Business Linkage", timing: "Month 1-5", actionPoints: ["Connect strategies to BU plans", "Embed in make vs buy decisions", "Build governance for innovation", "Position CPO as trusted advisor"], outcomes: ["Insights shape business decisions", "Make vs buy includes procurement", "Innovation enabled"]},
+    {name: "Data, Technology & Visibility", today: ["Data exists but insight lacking", "Best practices don't transfer across regions", "Too long to deploy tech across plants", "Predictive capability non-existent"], good: ["Single source of truth emerging - common platform for core operations", "Predictive analytics identify opportunities", "Best practices shared globally", "VMI/consignment where appropriate", "Market intel feeds category strategies"], action: "Predictive Analytics Deployment", timing: "Month 2-8", actionPoints: ["Drive platform consolidation - migrate legacy and M&A systems to common data model", "Move from reports to predictive analytics", "Systematically capture best practices", "Accelerate tech deployment", "Integrate market intelligence"], outcomes: ["Core operations on unified platform - M&A integration roadmap defined", "Actionable insights not just reports", "Best practice transfer operational", "Market intel informing decisions"]},
+    {name: "Value Definition & Recognition", today: ["TCO understood but not consistently applied", "Success measured in savings percentages", "Innovation contribution not measured", "Sustainability as compliance"], good: ["TCO extends to lifecycle value", "Value in business outcomes not just savings", "Working capital constantly optimized", "Revenue enablement recognized"], action: "Value Framework Expansion", timing: "Month 2-9", actionPoints: ["Extend TCO to full lifecycle", "Measure value in business outcomes", "Quantify speed-to-market contribution", "Optimize working capital targets"], outcomes: ["Value beyond savings", "Revenue enablement recognized", "Working capital targets met"]},
+    {name: "Governance & Compliance", today: ["Sustainability as checkbox", "Standardized SOP deployment and adoption slow across regions", "Category councils lack authority", "Governance seen as bureaucracy slowing decisions", "Center of excellence fragmented"], good: ["Sustainability embedded in decisions", "Global governance, regional flexibility", "Category councils have authority", "Governance enables speed", "Center of Excellence activated"], action: "Governance Enablement", timing: "Month 3-9", actionPoints: ["Embed sustainability in decisions", "Establish councils with authority", "Create clear escalation paths", "Balance global with regional", "Identify resources and build COE"], outcomes: ["Governance enables not blocks", "Councils have accountability", "Sustainability embedded", "COE introduction and support rollout"]},
+    {name: "Supplier Engagement", today: ["Innovation ad-hoc - individual relationships", "Mismatch between relationships and needs", "Strategic suppliers not systematically developed", "No joint business planning"], good: ["Strategic suppliers as innovation partners", "JDAs for key development areas", "Joint business plans with top suppliers", "Supplier innovation forums established"], action: "Supplier Development Program", timing: "Month 2-12", actionPoints: ["Establish structured development approach", "Implement JDAs for key areas", "Create joint business plans", "Set up innovation forums"], outcomes: ["Suppliers as innovation partners", "JDAs delivering results", "Ideas systematically captured"]},
+    {name: "Stakeholder & Performance", today: ["Respected but not essential to advantage", "Talent good at execution, lacks strategic", "Limited career progression", "No seat at product development"], good: ["Recognized as competitive advantage", "Active stakeholder feedback with NPS", "Talent pipeline includes business leaders", "Represented in NPD governance"], action: "Transparency & Accountability", timing: "Month 2-10", actionPoints: ["Deploy KPI dashboards to stakeholders", "Implement stakeholder NPS", "Build talent pipeline with rotations", "Secure seat in NPD governance"], outcomes: ["Full transparency on contribution", "Stakeholders seek procurement input", "Talent pipeline formalized"]}
+  ]},
+  {num: 4, title: "CORPORATE OUTCOME INFLUENCER", subtitle: "Shaping markets and business direction through strategic engagement", color: "#16A34A", dimensions: [
+    {name: "Strategic Positioning", today: ["Understands business but not shaping it", "M&A excludes supply chain planning", "CPO operational not strategic voice", "Reacts to strategy rather than informing"], good: ["Actively shapes corporate strategy", "M&A includes supply chain synergy", "CPO strategic advisor to CEO", "Insights influence product roadmap"], action: "Strategic Advisory Positioning", timing: "Month 1-6", actionPoints: ["Position CPO as strategic advisor", "Lead supply chain in M&A diligence", "Ensure insights influence roadmap", "Shape strategy not just execute"], outcomes: ["Procurement shapes strategy", "M&A includes supply chain analysis", "CPO advising on market trends"]},
+    {name: "Data, Technology & Visibility", today: ["Analytics backward-looking", "Market intel gathered ad-hoc", "No AI tools integration", "Control tower discussed not implemented", "Digital twin concept not started", "Scope 3 emissions traceability relies on supplier attestations - no independent verification"], good: ["Single source of truth achieved - all entities including M&A on common platform", "Market intel influences roadmaps and category strategies", "Real-time dashboards to business outcomes", "Trend triggers identify risk early", "Control tower operational for visibility and alerts", "Digital twin in development - procurement contributing data", "AI adoption has strategic plan", "Blockchain use cases evaluated for traceability and Scope 3 verification - pilot identified"], action: "Control Tower & AI Roadmap", timing: "Month 2-9", actionPoints: ["Implement control tower with visibility", "Integrate external data - commodity, geopolitical", "Institute trend triggers for early risk", "Develop AI adoption plan", "Initiate digital twin with procurement data", "(Optional) Blockchain for Scope 3 traceability pilot identified for multi-party trust scenario"], outcomes: ["Control tower operational", "Proactive risk through triggers", "AI roadmap approved", "Digital twin prototype for critical chains", "(Optional) Blockchain pilot scoped for 1-2 critical chains where provenance matters"]},
+    {name: "Value Definition & Recognition", today: ["Sustainability role unclear", "Innovation sourcing reactive", "Demand shaping not in vocabulary", "Seen as cost center not value center"], good: ["Sustainability through supply chain transformation", "Innovation sourced aligned to direction", "Demand shaped not just fulfilled", "Recognized as margin contributor"], action: "Demand Shaping & Innovation", timing: "Month 2-10", actionPoints: ["Source innovation aligned to business", "Shape demand - influence what and when", "Achieve sustainability through transformation", "Get recognized as margin contributor"], outcomes: ["Demand shaped not just fulfilled", "Innovation sourcing proactive", "In executive margin reporting"]},
+    {name: "Governance & Compliance", today: ["ESG exists but Scope 3 is not measured", "External stakeholders not procurement's concern", "Governance reactive to regulations"], good: ["ESG measured across supply chain", "Provenance requirements defined for critical supply chains - technology options assessed", "Scope 3 tracked with reduction plans", "Regulatory and shareholders' expectations proactively anticipated and addressed"], action: "ESG & Scope 3 Measurement", timing: "Month 2-10", actionPoints: ["Build Scope 3 measurement framework", "Track ESG across supply chain", "Address external expectations proactively", "Anticipate regulatory changes"], outcomes: ["Scope 3 tracked with plans", "ESG reported across chain", "Regulations anticipated"]},
+    {name: "Supplier Engagement", today: ["Relationships not exploited strategically", "Limited system integration - spreadsheets", "Co-investment rare and unstructured", "Innovation captured not commercialized"], good: ["Suppliers co-invest aligned to direction", "Ecosystem creates strategic optionality", "Procurement influences supplier R&D", "EDI integration in supply chain and finance", "Suppliers in IBP/S&OP for critical categories"], action: "Supplier Ecosystem Activation", timing: "Month 3-12", actionPoints: ["Drive co-investment with strategics", "Influence supplier R&D roadmaps", "Implement EDI integration", "Integrate suppliers into IBP/S&OP"], outcomes: ["Co-investment with suppliers", "EDI operational", "Suppliers in planning process"]},
+    {name: "Stakeholder & Performance", today: ["Executes strategy but doesn't inform", "Value recognized internally only", "CPO not considered for business roles", "Absent from investor narrative"], good: ["Contributions in investor communications", "Cross-functional leadership on initiatives", "Leaders rotate into business roles", "CPO in executive succession", "IBP established with procurement as core"], action: "IBP Integration & Visibility", timing: "Month 2-10", actionPoints: ["Establish procurement as IBP core node", "Make contributions visible to investors", "Enable rotation into business roles", "Get CPO into succession planning"], outcomes: ["IBP with procurement integrated", "In annual report narrative", "CPO in succession planning"]}
+  ]},
+  {num: 5, title: "TRANSFORMATIONAL ENABLER", subtitle: "End-to-end orchestration through digital integration and AI", color: "#0891B2", dimensions: [
+    {name: "Strategic Positioning", today: ["Digital transformation fragmented", "Procurement one voice, not orchestrator", "Decisions rely on intuition over data", "Control tower monitors, not decides"], good: ["Orchestrates end-to-end value chain", "War room - n-tier to end customer visibility", "Nerve center for supply chain intelligence", "CPO enterprise transformation leader"], action: "Control Tower Architecture", timing: "Month 1-8", actionPoints: ["Design war room - single pane of glass", "Establish n-tier to customer visibility", "Position as nerve center", "Enable digital twin for scenarios"], outcomes: ["End-to-end visibility operational", "War room as decision engine", "CPO as transformation leader"]},
+    {name: "Data, Technology & Visibility", today: ["Multiple systems, no unified view", "AI pilots stuck in POC - not scaled", "Visibility stops at Tier 1", "Disruption response manual and slow", "Digital twin exists in pockets, not connected", "Provenance claims unverifiable beyond Tier 1 - Scope 3 data based on estimates not actuals"], good: ["Single pane - visibility across all tiers", "AI drives autonomous routine decisions", "Digital twin fully operational - real-time what-if on disruptions and sourcing", "Predictive alerts trigger prescribed actions", "Multi-tier mapping complete", "Blockchain operational for critical chains - provenance and emissions verified across tiers where multi-party trust required"], action: "Multi-Tier Visibility & AI", timing: "Month 2-12", actionPoints: ["Map critical chains to Tier 2/3", "Scale AI from pilots to production", "Enable autonomous routine decisions", "Implement predictive alert triggers", "Scale digital twin for sourcing what-ifs", "(Optional) Scale blockchain pilot to critical supply chains requiring verified provenance", "(Optional) Evaluate smart contracts for supplier payment triggers"], outcomes: ["Multi-tier mapping complete", "AI driving routine decisions", "Predictive alerts operational", "Digital twin driving proactive decisions", "(Optional) Provenance verified through blockchain for critical chains"]},
+    {name: "Value Definition & Recognition", today: ["Value in traditional terms - cost, quality", "Transformation always 'in progress'", "Digital ROI hard to quantify", "Resilience not measured"], good: ["Value in resilience, agility, optionality", "Continuous improvement via ML", "Transformation is capability not project", "Digital ROI tracked and proven"], action: "Resilience Value Framework", timing: "Month 3-10", actionPoints: ["Measure resilience, agility, optionality", "Track and prove digital ROI", "Embed ML-driven improvement", "Make transformation a capability"], outcomes: ["Resilience measured and valued", "Digital ROI proven", "Evolution embedded in model"]},
+    {name: "Governance & Compliance", today: ["Governance can't keep pace with tech", "AI ethics policies immature", "Compliance reactive to regulations", "Risk frameworks miss systemic risks"], good: ["Governance adaptive and tech-enabled", "AI ethics embedded in operations", "Regulatory changes anticipated", "Transparency as competitive edge"], action: "Adaptive Governance", timing: "Month 4-10", actionPoints: ["Build governance that keeps pace", "Embed AI ethics in operations", "Anticipate regulatory changes", "Make transparency a differentiator"], outcomes: ["Governance enables transformation", "AI ethics embedded", "Transparency as advantage"]},
+    {name: "Supplier Engagement", today: ["Collaboration bilateral only", "No visibility into supplier's suppliers", "Information sharing periodic", "Ecosystem fragmented"], good: ["Multi-tier ecosystem visible and orchestrated", "Real-time collaboration across network", "Suppliers in planning with data sharing", "Traceability raw material to customer", "Smart contracts triggering payment on verified delivery for strategic suppliers - reduces disputes and accelerates cash flow"], action: "Ecosystem Orchestration", timing: "Month 3-12", actionPoints: ["Orchestrate multi-tier ecosystem", "Implement real-time collaboration", "Enable continuous health monitoring", "Achieve complete traceability", "(Optional) Implement smart contracts with strategic suppliers where dispute resolution is costly"], outcomes: ["Ecosystem fully orchestrated", "Risks identified before cascade", "Traceability complete", "(Optional) Smart contracts reducing payment disputes with strategic suppliers"]},
+    {name: "Stakeholder & Performance", today: ["KPIs function-specific not value-chain", "Decision cycles in days or weeks", "Organization reacts not anticipates", "Talent model traditional - silos"], good: ["Decisions compressed to hours/minutes", "KPIs span entire value chain", "Organization anticipates and shapes shifts", "Procurement talent commands premium"], action: "Supercharged Collaboration", timing: "Month 3-12", actionPoints: ["Compress decision cycles", "Implement value-chain KPIs", "Enable market shift anticipation", "Drive continuous SLA improvement"], outcomes: ["Decision cycles compressed", "KPIs span value chain", "Talent commands premium"]}
+  ]}
+];
+
+var selectedLevel = null;
+var selectedDimension = null;
+
+function selectLevel(num) {
+  if (selectedLevel === num) {
+    selectedLevel = null;
+    selectedDimension = null;
+    document.getElementById("levelDetail").style.display = "none";
+  } else {
+    selectedLevel = num;
+    selectedDimension = null;
+    document.getElementById("levelDetail").style.display = "block";
+    showLevelDetail();
+  }
+  renderLevelButtons();
+}
+
+function selectDimension(idx) {
+  if (selectedDimension === idx) {
+    selectedDimension = null;
+    document.getElementById("dimensionDetail").style.display = "none";
+  } else {
+    selectedDimension = idx;
+    document.getElementById("dimensionDetail").style.display = "block";
+    showDimensionDetail();
+  }
+  renderDimensions();
+}
+
+function renderLevelButtons() {
+  var container = document.getElementById("levelButtons");
+  container.innerHTML = "";
+  for (var i = 0; i < levels.length; i++) {
+    (function(level, idx) {
+      var btn = document.createElement("button");
+      btn.className = "level-btn flex flex-col items-center";
+      var ringClass = selectedLevel === level.num ? " ring-4 ring-offset-2" : "";
+      btn.innerHTML = '<div class="w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg' + ringClass + '" style="background-color:' + level.color + '">' + level.num + '</div><span class="text-xs font-semibold mt-2 text-slate-700 text-center" style="max-width:80px">' + level.title + '</span>';
+      btn.onclick = function() { selectLevel(level.num); };
+      container.appendChild(btn);
+      if (idx < levels.length - 1) {
+        var conn = document.createElement("div");
+        conn.className = "w-8 h-1 bg-slate-200 rounded hidden md:block";
+        container.appendChild(conn);
+      }
+    })(levels[i], i);
+  }
+}
+
+function showLevelDetail() {
+  var level = null;
+  for (var i = 0; i < levels.length; i++) { if (levels[i].num === selectedLevel) { level = levels[i]; break; } }
+  if (!level) return;
+  document.getElementById("levelHeader").style.backgroundColor = level.color;
+  document.getElementById("levelNumCircle").textContent = level.num;
+  document.getElementById("levelTitle").textContent = level.title;
+  document.getElementById("levelSubtitle").textContent = level.subtitle;
+  document.getElementById("dimensionDetail").style.display = "none";
+  renderDimensions();
+}
+
+function renderDimensions() {
+  var level = null;
+  for (var i = 0; i < levels.length; i++) { if (levels[i].num === selectedLevel) { level = levels[i]; break; } }
+  if (!level) return;
+  var grid = document.getElementById("dimensionsGrid");
+  grid.innerHTML = "";
+  for (var j = 0; j < level.dimensions.length; j++) {
+    (function(dim, idx) {
+      var btn = document.createElement("button");
+      var cls = selectedDimension === idx ? "bg-slate-800 text-white" : "bg-white hover:bg-slate-100 text-slate-700";
+      btn.className = "p-4 rounded-lg text-left transition-all cursor-pointer " + cls;
+      btn.innerHTML = '<span class="font-semibold text-sm">' + dim.name + '</span>';
+      btn.onclick = function() { selectDimension(idx); };
+      grid.appendChild(btn);
+    })(level.dimensions[j], j);
+  }
+}
+
+function showDimensionDetail() {
+  var level = null;
+  for (var i = 0; i < levels.length; i++) { if (levels[i].num === selectedLevel) { level = levels[i]; break; } }
+  if (!level) return;
+  var dim = level.dimensions[selectedDimension];
+  document.getElementById("dimHeader").style.backgroundColor = level.color;
+  document.getElementById("dimTitle").textContent = dim.name;
+  var h = "";
+  for (var t = 0; t < dim.today.length; t++) { h += '<li class="text-sm text-slate-600 flex gap-2"><span class="text-red-400">•</span>' + dim.today[t] + '</li>'; }
+  document.getElementById("todayList").innerHTML = h;
+  h = "";
+  for (var g = 0; g < dim.good.length; g++) { h += '<li class="text-sm text-slate-600 flex gap-2"><span class="text-green-400">•</span>' + dim.good[g] + '</li>'; }
+  document.getElementById("goodList").innerHTML = h;
+  document.getElementById("actionName").textContent = dim.action;
+  document.getElementById("actionTiming").textContent = dim.timing;
+  h = "";
+  for (var a = 0; a < dim.actionPoints.length; a++) { h += '<li class="text-sm text-slate-600 flex gap-2"><span class="text-blue-400">→</span>' + dim.actionPoints[a] + '</li>'; }
+  document.getElementById("actionList").innerHTML = h;
+  h = "";
+  for (var o = 0; o < dim.outcomes.length; o++) { h += '<li class="text-sm text-slate-600 flex gap-2"><span class="text-purple-400">✓</span>' + dim.outcomes[o] + '</li>'; }
+  document.getElementById("outcomeList").innerHTML = h;
+}
+
+renderLevelButtons();
+</script>
+</body>
+</html>
